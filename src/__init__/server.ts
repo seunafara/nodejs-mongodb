@@ -1,10 +1,10 @@
 import express from "express"
 
 class Server {
-    port: number;
+    port: string | number;
     app: any;
 
-    constructor(PORT: number){
+    constructor(PORT: string | number){
         this.port = PORT
     }
 
@@ -16,7 +16,7 @@ class Server {
     connectDB(){}
 
     register(options: Array<String>){
-        
+
         if(options.includes('middleware')) console.log('We have middleware to register');
         if(options.includes('cron')) console.log('We have cron jobs to register');
         
