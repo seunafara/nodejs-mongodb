@@ -3,6 +3,6 @@ import { PORT } from "./config"
 
 const server = new Server(PORT)
 
-const app = server.create().register(['middleware', 'cron'])
+server.create().register(['middleware', 'cron'])
 
-app.start()
+server.start()
