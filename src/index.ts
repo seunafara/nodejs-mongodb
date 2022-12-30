@@ -1,8 +1,8 @@
 import Server from './__init__/server';
-import { PORT } from "./config"
+import { PORT, DB } from "./config"
 
 const server = new Server(PORT)
 
-server.create().register(['middleware', 'cron'])
+server.create().connectDB(DB).register(['middleware', 'cron', 'static_dir'])
 
 server.start()
