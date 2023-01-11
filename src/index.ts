@@ -3,6 +3,6 @@ import { PORT, DB } from "./config"
 
 const server = new Server(PORT)
 
-server.create().connectDB(DB).register(['middleware', 'cron', 'static_dir'])
+server.create().connectDB(DB).register(['routes'])
 
 server.start()
