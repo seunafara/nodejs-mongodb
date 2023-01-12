@@ -2,6 +2,7 @@ import express from "express"
 import { isEmpty } from "ramda"
 import mongoose from "mongoose"
 import registerRoutes from './registers/routes'
+import registerMiddleware from "./registers/middleware"
 
 class Server {
 	port: string | number
@@ -36,8 +37,9 @@ class Server {
 	}
 
 	register(options: Array<String>) {
-		if (options.includes("middleware"))
-			console.log("We have middleware to register")
+		if (options.includes("middleware")) registerMiddleware(this.app)
+
+
 		if (options.includes("cron")) console.log("We have cron jobs to register")
 
 		if(options.includes("routes")) registerRoutes(this.app)
