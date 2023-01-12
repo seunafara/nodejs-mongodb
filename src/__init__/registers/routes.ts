@@ -1,30 +1,12 @@
-import fs from "fs"
-
-// const fs = require("fs")
-import path from "path"
-
-function getFileNamesAndPaths(folder: string) {
-	let fileNamesAndPaths: any[] = []
-	let files = fs.readdirSync(folder)
-
-	files.forEach((file) => {
-		let filePath = path.join(folder, file)
-		let stat = fs.lstatSync(filePath)
-		if (stat.isDirectory()) {
-			let subFiles = getFileNamesAndPaths(filePath)
-			fileNamesAndPaths = fileNamesAndPaths.concat(subFiles)
-		} else {
-			fileNamesAndPaths.push({ name: file, path: filePath })
-		}
-	})
-
-	return fileNamesAndPaths
-}
+import { isEmpty } from 'ramda'
+import getFileNamesAndPaths from '../../utils/getFileNamesPaths'
 
 export default (app: any) => {
-	getFileNamesAndPaths(process.cwd() + "/src/routes").forEach((file) => {
+    const ROUTES_DIR = process.cwd() + "/src/routes"
+    
+	getFileNamesAndPaths(ROUTES_DIR).forEach((file) => {
 		const endpoint = require(file.path)
-		if (Object.keys(endpoint).length === 0) {
+		if (isEmpty(endpoint)) {
 			console.log("No endpoints found in route at: " + file.path)
 		} else {
 			// console.log("endpoint", endpoint)
@@ -33,10 +15,10 @@ export default (app: any) => {
 			// /my-backend-app/src/routes/products/index.ts = /products
 			// /my-backend-app/src/routes/products/cart.ts = /products/cart
 
-            const endpointUrl = file.path
-							.split("routes")[1]
-							.replace(/\.(ts|js)$/, "")
-							.replace("/index", "")
+			const endpointUrl = file.path
+				.split("routes")[1] // grab everything after routes
+				.replace(/\.(ts|js)$/, "") // replace .ts .js with empty string
+				.replace("/index", "") // replace index files with empty string
 
 			Object.keys(endpoint).forEach((method) => {
 				// Register the route
