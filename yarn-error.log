@@ -1,0 +1,72 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn add bodyParser cors
+
+PATH: 
+  /Users/ola/.pyenv/shims:/Users/ola/.pyenv/shims:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/ola/opt/anaconda3/bin:/Users/ola/opt/anaconda3/condabin:/Users/ola/.pyenv/shims:/Library/Frameworks/Python.framework/Versions/3.10/bin:/Applications/Postgres.app/Contents/Versions/15/bin:/Applications/Postgres.app/Contents/Versions/15/bin
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  16.14.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/bodyParser: Not found
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:67029:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140883:22)
+      at Request.emit (node:events:520:28)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141855:10)
+      at Request.emit (node:events:520:28)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141777:12)
+      at Object.onceWrapper (node:events:639:28)
+      at IncomingMessage.emit (node:events:532:35)
+      at endReadableNT (node:internal/streams/readable:1346:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+npm manifest: 
+  {
+    "name": "nodejs-mongodb",
+    "version": "1.0.0",
+    "description": "Quick starter boilerplate for NodeJS apps using MongoDB",
+    "main": "index.js",
+    "scripts": {
+      "watch": "tsc -w",
+      "dev": "nodemon --exec ts-node src/index.ts",
+      "dev:prod": "nodemon dist/index.js",
+      "start": "ts-node src/index.ts",
+      "start:prod": "node dist/index.js"
+    },
+    "keywords": [
+      "NodeJS",
+      "MongoDB",
+      "mongoose",
+      "typescript",
+      "javascript",
+      "boilerplate"
+    ],
+    "author": "Oluseun Afara",
+    "license": "ISC",
+    "devDependencies": {
+      "@types/express": "^4.17.15",
+      "@types/node": "^18.11.15",
+      "@types/ramda": "^0.28.20",
+      "nodemon": "^2.0.20",
+      "ts-node": "^10.9.1",
+      "typescript": "^4.9.4"
+    },
+    "dependencies": {
+      "dotenv": "^16.0.3",
+      "express": "^4.18.2",
+      "mongoose": "^6.8.2",
+      "ramda": "^0.28.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
