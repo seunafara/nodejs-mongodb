@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-mongodb",
+  "name": "predeet-beta",
   "version": "1.0.0",
   "description": "Quick starter boilerplate for NodeJS apps using MongoDB",
   "main": "index.js",
@@ -23,6 +23,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.15",
+    "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.11.15",
     "@types/passport": "^1.0.11",
     "@types/passport-jwt": "^3.0.8",
@@ -32,10 +33,12 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
+    "argon2": "^0.30.3",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.2",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
