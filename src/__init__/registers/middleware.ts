@@ -1,5 +1,6 @@
 import bodyParser from "body-parser"
 import cors from "cors"
+import customMiddleware from "../../middleware/index"
 
 export default (app: any) => {
 	// Middlewares
@@ -9,4 +10,7 @@ export default (app: any) => {
 	app.use(bodyParser.json({ limit: "50mb" }))
 	// Cors Middleware
 	app.use(cors())
+
+    // Run custom middlewares
+    customMiddleware(app)
 }
