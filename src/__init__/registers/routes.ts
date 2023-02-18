@@ -1,9 +1,10 @@
-import { isEmpty } from 'ramda'
-import getFileNamesAndPaths from '../../utils/getFileNamesPaths'
+import { isEmpty } from "ramda"
+import getFileNamesAndPaths from "../../utils/getFileNamesPaths"
+import passport from "passport"
 
 export default (app: any) => {
-    const ROUTES_DIR = process.cwd() + "/src/routes"
-    
+	const ROUTES_DIR = process.cwd() + "/src/routes"
+
 	getFileNamesAndPaths(ROUTES_DIR).forEach((file) => {
 		const endpoint = require(file.path)
 		if (isEmpty(endpoint)) {
@@ -21,7 +22,14 @@ export default (app: any) => {
 				.replace("/index", "") // replace index files with empty string
 
 			Object.keys(endpoint).forEach((method) => {
-				// Register the route
+				const requiresAuth = method.slice(-1) === "#"
+				if (requiresAuth) {
+					app.use(passport.authenticate("jwt", { session: false }))
+					// Register the route
+					let formattedMethodName = method.replace("#", "")
+					app[formattedMethodName](endpointUrl, endpoint[method])
+					return
+				}
 				app[method](endpointUrl, endpoint[method])
 			})
 		}
