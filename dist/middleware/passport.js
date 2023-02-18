@@ -6,5 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const passport_1 = __importDefault(require("passport"));
 exports.default = (app) => {
     app.use(passport_1.default.initialize());
+    require("../utils/jwtStrategy")(passport_1.default);
 };
 //# sourceMappingURL=passport.js.map
