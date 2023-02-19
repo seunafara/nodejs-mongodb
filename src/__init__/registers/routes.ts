@@ -22,12 +22,15 @@ export default (app: any) => {
 				.replace("/index", "") // replace index files with empty string
 
 			Object.keys(endpoint).forEach((method) => {
+				// Register the route
 				const requiresAuth = method.slice(-1) === "#"
 				if (requiresAuth) {
-					app.use(passport.authenticate("jwt", { session: false }))
-					// Register the route
-					let formattedMethodName = method.replace("#", "")
-					app[formattedMethodName](endpointUrl, endpoint[method])
+					const formattedMethodName = method.replace("#", "")
+					app[formattedMethodName](
+						endpointUrl,
+						passport.authenticate("jwt", { session: false }),
+						endpoint[method],
+					)
 					return
 				}
 				app[method](endpointUrl, endpoint[method])
