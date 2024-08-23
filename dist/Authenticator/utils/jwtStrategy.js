@@ -26,14 +26,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.middleware = void 0;
-const passport_1 = __importDefault(require("passport"));
-const config_1 = require("../config");
-const middleware = async (app) => {
-    var _a;
-    app.use(passport_1.default.initialize());
-    const { jwtStrategy } = await (_a = process.cwd() + config_1.JWT_PATH, Promise.resolve().then(() => __importStar(require(_a))));
-    jwtStrategy(passport_1.default);
+exports.jwtStrategy = void 0;
+const passport_jwt_1 = require("passport-jwt");
+const passport_jwt_2 = require("passport-jwt");
+const model_1 = __importDefault(require("../model"));
+Promise.resolve().then(() => __importStar(require("dotenv/config")));
+const key = process.env.APP_SECRET;
+const opts = {
+    jwtFromRequest: passport_jwt_2.ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: key,
 };
-exports.middleware = middleware;
-//# sourceMappingURL=passport.js.map
+const jwtStrategy = (passport) => {
+    passport.use(new passport_jwt_1.Strategy(opts, (jwt_payload, done) => {
+        model_1.default.findById(jwt_payload._id)
+            .then((user) => {
+            if (user)
+                return done(null, user);
+            return done(null, false);
+        })
+            .catch((err) => {
+            console.log(err);
+        });
+    }));
+};
+exports.jwtStrategy = jwtStrategy;
+//# sourceMappingURL=jwtStrategy.js.map
