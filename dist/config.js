@@ -16,9 +16,7 @@ exports.USE_CORS = exports.__isProd__
     ? true
     : Boolean(Number(process.env.USE_CORS));
 exports.LOCALHOST_URLS = ["http://localhost:3000"];
-exports.PRODUCTION_URLS = [
-    "https://toerrand.com",
-];
+exports.PRODUCTION_URLS = [];
 exports.PORT = !exports.__isProd__
     ? Number(process.argv[2] || 7777)
     : Number(process.env.PORT);

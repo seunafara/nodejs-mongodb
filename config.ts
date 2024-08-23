@@ -28,7 +28,7 @@ export const LOCALHOST_URLS = ["http://localhost:3000"]
 
 // Frontend Production URLS
 export const PRODUCTION_URLS = [
-	"https://toerrand.com",
+	// Add Prod Url
 ]
 
 // App port
