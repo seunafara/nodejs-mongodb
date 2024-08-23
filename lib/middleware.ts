@@ -1,6 +1,6 @@
 import bodyParser from "body-parser"
 import cors from "cors"
-import customMiddleware from "../../middleware/index"
+import customMiddleware from "../middleware/index"
 
 export default (app: any) => {
 	// Middlewares
@@ -11,6 +11,6 @@ export default (app: any) => {
 	// Cors Middleware
 	app.use(cors())
 
-    // Run custom middlewares
-    customMiddleware(app)
+	// Run custom middlewares
+	customMiddleware(app)
 }
