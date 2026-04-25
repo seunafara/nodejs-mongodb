@@ -1,5 +1,5 @@
 {
-  "name": "predeet-beta",
+  "name": "nodejs-mongodb",
   "version": "1.0.0",
   "description": "Quick starter boilerplate for NodeJS apps using MongoDB",
   "main": "index.js",
@@ -20,7 +20,6 @@
     "boilerplate"
   ],
   "author": "Oluseun Afara",
-  "license": "ISC",
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.13",

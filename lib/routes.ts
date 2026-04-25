@@ -2,6 +2,7 @@ import { isEmpty } from "ramda"
 import passport from "passport"
 import { getFileNamesAndPaths } from "./utils/index"
 import { ROUTES_DIR } from "../config"
+import { jwtStrategy } from './utils/routes/jwtStrategy'
 
 export default (app: any) => {
   const routes = getFileNamesAndPaths(process.cwd() + ROUTES_DIR)
@@ -26,6 +27,7 @@ export default (app: any) => {
 					continue // skip if not a valid Express method
 				if (requiresAuth) {
 					// Register the route with authentication
+          jwtStrategy(passport)
 					app[formattedMethodName](
 						endpointUrl,
 						passport.authenticate("jwt", { session: false }),

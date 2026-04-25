@@ -31,6 +31,9 @@ export const PRODUCTION_URLS = [
 	// Add Prod Url
 ]
 
+// Allowed URLS for CORS
+export const WHITELIST = !__isProd__ ? [...LOCALHOST_URLS, ...PRODUCTION_URLS] : [...PRODUCTION_URLS]
+
 // App port
 export const PORT: number = !__isProd__
 	? Number(process.argv[2] || 7777)

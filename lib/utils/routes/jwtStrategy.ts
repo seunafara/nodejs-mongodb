@@ -1,6 +1,6 @@
 import { Strategy as JwtStrategy } from "passport-jwt"
 import { ExtractJwt } from "passport-jwt"
-import User from "../model"
+import User from "../../../Authenticator/model"
 
 import("dotenv/config")
 const key = process.env.APP_SECRET

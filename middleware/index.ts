@@ -1,13 +1,28 @@
-import { MIDDLEWARE_DIR } from "../config"
-import { getFileNamesAndPaths } from "../lib/utils/index"
-
-export default async (app: any) => {
-	for (let file of getFileNamesAndPaths(process.cwd() + MIDDLEWARE_DIR)) {
-		const isThis = file.path.split("middleware")[1].includes("index")
-		if (!isThis) {
-			// we do not want to recursively call this function
-			const myCustomMiddleware = await import(file.path)
-			myCustomMiddleware.middleware(app)
-		}
-	}
+import bodyParser from 'body-parser';
+import { USE_CORS, WHITELIST } from '../config';
+import cors from "cors"
+import passport from 'passport';
+const corsOptions = {
+  origin: function (
+    origin: any,
+    callback: (arg0: Error | null, arg1: boolean | undefined) => void,
+  ) {
+    if (USE_CORS) {
+      if (WHITELIST.indexOf(origin) !== -1) {
+        callback(null, true)
+      } else {
+        callback(
+          new Error("Origin: " + origin + " is Not allowed by CORS"),
+          false,
+        )
+      }
+    } else callback(null, true)
+  },
 }
+
+export default [
+  bodyParser.urlencoded({ extended: true, limit: "50mb" }),
+  bodyParser.json({ limit: "50mb" }),
+  cors(corsOptions),
+  passport.initialize()
+]
