@@ -1,7 +1,7 @@
 import express from "express"
 import mongoose from "mongoose"
 import routes from "./routes"
-import { __isProd__, WHITELIST } from "../config"
+import { WHITELIST } from "../config"
 import { isEmpty } from 'ramda'
 import middleware from './middleware'
 
@@ -12,7 +12,7 @@ class Server {
 
 	constructor(PORT: string | number) {
 		this.port = PORT
-		this.whitelist = WHITELIST
+		this.whitelist = WHITELIST || []
 	}
 
   async create(options: Array<String>) {
@@ -62,12 +62,6 @@ class Server {
       } 
     }
 		return app
-	}
-
-	start(): void {
-		this.app.listen(this.port, () =>
-			console.log(`Express is working on port ${this.port}`),
-		)
 	}
 }
 

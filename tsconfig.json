@@ -7,6 +7,7 @@
     "sourceMap": true,
     "outDir": "./dist",
     "moduleResolution": "node",
+    "ignoreDeprecations": "6.0",
     "removeComments": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
