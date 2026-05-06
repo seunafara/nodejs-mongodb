@@ -8,6 +8,11 @@ export const ROUTES_DIR: string = __isProd__
 	? "/dist/routes"
 	: "/routes"
 
+// Crons Dir
+export const CRONS_DIR: string = __isProd__
+	? "/dist/crons"
+	: "/crons"
+
 // Middleware Dir
 export const MIDDLEWARE_DIR: string = __isProd__
 	? "/dist/middleware"

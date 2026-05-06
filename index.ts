@@ -10,8 +10,7 @@ const app = async () => {
   const registry = ["routes", "middleware"]
 
   if (RUN_CRON) {
-    console.log('No Cron Lib');
-    // registry.push(["cron"])
+    registry.push("cron")
   } else {
     console.log("CRON JOBS NOT running...")
   }

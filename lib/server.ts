@@ -4,6 +4,7 @@ import routes from "./routes"
 import { WHITELIST } from "../config"
 import { isEmpty } from 'ramda'
 import middleware from './middleware'
+import bootCron from "./crons"
 
 class Server {
 	port: string | number
@@ -48,9 +49,9 @@ class Server {
         case "middleware":
          await middleware(app)
           break
-        // case "cron":
-        // 	bootCron()
-        // 	break
+        case "cron":
+        	bootCron()
+        	break
         case "routes":
          routes(app)
           break
